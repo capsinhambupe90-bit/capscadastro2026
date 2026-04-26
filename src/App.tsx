@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Search, Plus, User, Calendar, Edit2, Trash2, X, Eye, CalendarClock, CalendarRange, Users, Printer, CheckCircle, RotateCcw, Lock, LogOut } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Search, Plus, User, Edit2, Trash2, X, Eye, CalendarClock, CalendarRange, Users, Printer, CheckCircle, RotateCcw, Lock, LogOut } from 'lucide-react';
 import type { Patient, NewPatient, DateSlot, Appointment } from './types';
 import { fetchData, syncData } from './api';
 import { normalizeString, generateId, formatDateBr, formatDateForInput } from './utils';

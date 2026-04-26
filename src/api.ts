@@ -21,7 +21,7 @@ export const fetchData = async (sheetName: string): Promise<any[]> => {
   }
 };
 
-export const syncData = async (sheetName: string, updatedData: any[]): Promise<boolean> => {
+export const syncData = async (sheetName: string, updatedData: (Patient | DateSlot | Appointment)[]): Promise<boolean> => {
   if (!GOOGLE_SHEETS_URL) {
     localStorage.setItem(`caps_data_${sheetName}`, JSON.stringify(updatedData));
     return true;
