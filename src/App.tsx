@@ -200,6 +200,23 @@ function App() {
     e.preventDefault();
     const now = new Date().toISOString();
     let updatedList: Patient[];
+
+    // Verificação de Duplicidade (Apenas para novos cadastros)
+    if (!currentPatient) {
+      const duplicateRecord = patients.find(p => p.medicalRecord === formData.medicalRecord);
+      const duplicateCpf = formData.cpf && patients.find(p => p.cpf && p.cpf === formData.cpf);
+
+      if (duplicateRecord || duplicateCpf) {
+        const msg = duplicateRecord 
+          ? `O prontuário nº ${formData.medicalRecord} já pertence a ${duplicateRecord.name}.`
+          : `O CPF ${formData.cpf} já está cadastrado para ${duplicateCpf?.name}.`;
+        
+        if (!window.confirm(`${msg}\n\nDeseja realizar este novo cadastro mesmo assim?`)) {
+          return;
+        }
+      }
+    }
+
     if (currentPatient) {
       updatedList = patients.map((p) =>
         p.id === currentPatient.id ? { ...p, ...formData, lastUpdate: now } : p
